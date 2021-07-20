@@ -1,0 +1,20 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>AI Clothing Classification</title>
+
+      <link rel="stylesheet" type="text/css"  href= "{% static 'main.css' %}"/>
+
+  </head>
+
+  <body>
+    {% block content %}{% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'project.js' %}"></script>
+  </body>
+  
+</html>
