@@ -17,6 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware,'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -126,11 +127,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 print(BASE_DIR)
 print(STATIC_ROOT)
 
+
 # Extra lookup directories for collectstatic to find static files
 STATIC_DIRS = (os.path.join(BASE_DIR, 'static'))
 
 #  Add configuration for static files storage using whitenoise
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
