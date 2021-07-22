@@ -40,27 +40,30 @@ def upload(request):
         classify_output = classify(filename)
         print(classify_output)
         context['output'] = 'Uploaded'
-        return render(request, 'results.html', context)
+        # return render(request, 'results.html', context)
 
     else:
         context['error'] = 'No file uploaded'
         return render(request, 'upload.html', context)
+    return render(request, 'upload.html')
 
 
 
 
 @csrf_exempt
 def result(request):
-
-    print("Hello")
+    return render(request, 'results.html')
     # file = request.POST
     # if file != '':
-    #     classify_output = classify(file)
-    #     context["output"] = classify["classification"]
+    #     print(file)
+    #     context["output"] = 'black'
+    #     context['image'] = request.POST
+    #     # classify_output = classify(file)
+    #     # context["output"] = classify["classification"]
     # else:
     #     context["output"]= "Something went wrong"
-#     return render(request, 'results.html', context)
-#     # HttpResponse(json.dumps(context), content_type ="application/json")
+    # return render(request, 'results.html', context)
+    # HttpResponse(json.dumps(context), content_type ="application/json")
 
 
 

@@ -24,6 +24,9 @@ html
   animation: change 10s ease-in-out infinite;
 } */
 
+
+/* HOME PAGE */
+
 section
 {
   width: 100%;
@@ -98,6 +101,9 @@ section
     {}
 }
 
+
+/* UPLOAD PAGE */
+
 #upload-page
 {
   width: 100%;
@@ -108,46 +114,26 @@ section
   position: relative;
 }
 
-#results-page
-{
-  width: 50%;
-  height: 50%;
-  position: absolute;
-  margin-top: 12%;
-  margin-left: 25%;
-  background: linear-gradient(-45deg, rgb(238, 119, 82, 0.65), rgb(231, 60, 126, 0.65), rgb(35, 166, 213, 0.65), rgb(35, 213, 171, 0.65));
-}
 
-#result-div
-{
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(-45deg, #FFFFFF, #000000);
-  background: #FFFFFF;
-  background-size: 400%, 400%;
-  position: relative;
-}
-
-h2
+#upload-text
 {
   text-align: center;
-  font-size: 5rem;
+  font-size: 6rem;
   text-transform: uppercase;
   font-weight: bolder;
   letter-spacing: 2px;
   color: #000;
   position: absolute;
-  top: 15%;
-  left: 37%;
+  top: 10%;
+  left: 34%;
 }
-
 
 .upload-div
 {
   width: 50%;
   height: 50%;
   position: absolute;
-  margin-top: 12%;
+  margin-top: 13%;
   margin-left: 25%;
   background: linear-gradient(-45deg, rgb(238, 119, 82, 0.65), rgb(231, 60, 126, 0.65), rgb(35, 166, 213, 0.65), rgb(35, 213, 171, 0.65));
 }
@@ -200,9 +186,121 @@ h2
     background: none;
 }
 
-
-#file-submit
+#upload-btn
 {
-  background-color: #000;
-  color: #fff;
+  width: 50%;
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 1.5px solid #000;
+  color: #000;
+  background-color: rgb(255,255,255, 0.4);
+  text-decoration: none;
+  overflow: hidden;
+  font-weight: bolder;
+  padding: 1rem 2rem;
+  margin-top: 7%;
+  /* position: fixed; */
 }
+
+ 
+#upload-btn:hover
+{
+  background-color: rgb(255,255,255, 0.4);
+  background: linear-gradient(-45deg, rgb(238, 119, 82, 0.65), rgb(231, 60, 126, 0.65), rgb(35, 166, 213, 0.65), rgb(35, 213, 171, 0.65));
+  font-weight: bolder;
+} 
+
+
+
+
+/* RESULTS PAGE */
+
+.results-background
+{
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(-45deg, rgb(238, 119, 82, 0.65), rgb(231, 60, 126, 0.65), rgb(35, 166, 213, 0.65), rgb(35, 213, 171, 0.65));
+} 
+
+.result-div
+{
+  width: 75%;
+  height: 75%;
+  position: absolute;
+  margin-top: 7%;
+  margin-left: 12.5%;
+  background: #FFFFFF;
+  display: inline-flex;
+  align-content: space-between;
+} 
+
+#uplaoded-image
+{
+  margin:50px 40px;
+}
+
+.result-text
+{
+  position: relative;
+  margin: 50px 40px 40px 150px;
+}
+
+#color-text
+{
+  text-align: center;
+  font-size: 10rem;
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  margin-top: 20%;
+  margin-bottom: 5%;
+}
+
+#accuracy-text{
+  text-align: center;
+  font-size: 10rem;
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  margin-top: 30%;
+  margin-bottom: 5%;
+}
+
+#sub-text
+{
+  text-align: center;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 2px;
+}
+
+#back-button
+{
+  width: 10%;
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 1.5px solid #fff;
+  color: #fff;
+  position: absolute;
+  text-decoration: none;
+  overflow: hidden;
+  font-weight: bolder;
+  padding: 1rem 2rem;
+  top: 2%;
+  left:2%;
+  transition: color 0.5s;
+}
+
+#back-button:hover
+{
+  border: 1.5px solid #fff;
+  color: #000;
+  background-color: #fff;
+  font-weight: bolder;
+   /* background: linear-gradient(-45deg, rgb(238, 119, 82, 0.65), rgb(231, 60, 126, 0.65), rgb(35, 166, 213, 0.65), rgb(35, 213, 171, 0.65)); */
+} 
