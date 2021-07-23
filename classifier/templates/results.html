@@ -6,11 +6,15 @@
     <div class="results-background">
       <a href="\file-upload" id="back-button">Back</a>
       <div class="result-div">
-        <img id ="uplaoded-image" src="https://media.glamour.com/photos/604f757f876e6e1af71bca3e/master/w_1600,h_2148,c_limit/Amazon%20dresses.jpeg" alt="Classification image" width="500" height="600">
+        {% comment %} <img id ="uplaoded-image" src="https://media.glamour.com/photos/604f757f876e6e1af71bca3e/master/w_1600,h_2148,c_limit/Amazon%20dresses.jpeg" alt="Classification image" width="500" height="600"> {% endcomment %}
+        <img id ="uplaoded-image" src='{{image}}' alt="Classification image" width="500" height="600">
         <div class="result-text">
-          <h1 id="color-text">YELLOW</h3>
-          <h1 id="accuracy-text">95%</h3>
+          <h1 id="color-text">{{colour}}</h3>
+          <h1 id="accuracy-text">{{confidence}}%</h3>
           <p id="sub-text">confidence</p>
+          {% comment %} <h1 id="color-text">YELLOW</h3>
+          <h1 id="accuracy-text">95%</h3>
+          <p id="sub-text">confidence</p> {% endcomment %}
         </div>
       </div>
     </div>

@@ -39,13 +39,15 @@ def upload(request):
         print(uploaded_file_url)
         classify_output = classify(filename)
         print(classify_output)
-        context['output'] = 'Uploaded'
-        # return render(request, 'results.html', context)
+        context['colour'] = classify_output
+        context['image'] = uploaded_file_url
+        context['confidence'] = '95'
+        return render(request, 'results.html', context)
 
     else:
         context['error'] = 'No file uploaded'
         return render(request, 'upload.html', context)
-    return render(request, 'upload.html')
+    # return render(request, 'upload.html')
 
 
 
