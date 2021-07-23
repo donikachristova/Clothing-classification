@@ -39,7 +39,7 @@ def upload(request):
         print(uploaded_file_url)
         classify_output = classify(filename)
         print(classify_output)
-        context['colour'] = classify_output
+        context['colour'] = classify_output["classification"]
         context['image'] = uploaded_file_url
         context['confidence'] = '95'
         return render(request, 'results.html', context)
