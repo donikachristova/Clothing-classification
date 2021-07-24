@@ -43,9 +43,9 @@ def upload(request):
                 print('FILENAME: ',filename)
                 uploaded_file_url = fs.url(filename)
                 print(uploaded_file_url)
-                # classify_output = classify(uploaded_file_url)
-                # print(classify_output)
-                # context['colour'] = classify_output["classification"]
+                classify_output = classify(uploaded_file_url)
+                print(classify_output)
+                context['colour'] = classify_output["classification"]
                 context['image_url'] = uploaded_file_url
                 context['confidence'] = '95'
                 return render(request, 'results.html', context)
