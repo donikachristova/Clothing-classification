@@ -41,9 +41,11 @@ def upload(request):
                 print('FILENAME: ',filename)
                 uploaded_file_url = fs.url(filename)
                 print(uploaded_file_url)
-                classify_output = classify(filename)
-                print(classify_output)
-                context['colour'] = classify_output["classification"]
+                file_path = "media/" +filename
+                print(file_path)
+                # classify_output = classify(filename)
+                # print(classify_output)
+                # context['colour'] = classify_output["classification"]
                 context['image_url'] = uploaded_file_url
                 context['confidence'] = '95'
                 return render(request, 'results.html', context)
@@ -70,7 +72,7 @@ def classify(image):
     path = Path(pathlib.Path.cwd())
     print(path)
     this_learner = learner.load_learner(path/'export.pkl')
-    output = this_learner.predict(path/media/image)
+    output = this_learner.predict(path/image)
     print(output[0])
     return {"classification": output[0]}
 
