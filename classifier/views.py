@@ -54,9 +54,9 @@ def upload(request):
         except MultiValueDictKeyError:
             context['error'] = 'No file uploaded'
             return render(request, 'upload.html', context)
-        except:
-            context['error'] = 'Opps, something happened! Please try again.'
-            return render(request, 'upload.html', context)
+        # except:
+        #     context['error'] = 'Opps, something happened! Please try again.'
+        #     return render(request, 'upload.html', context)
     else:
         return render(request, 'upload.html')
 
