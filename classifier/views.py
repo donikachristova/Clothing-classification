@@ -32,31 +32,35 @@ def upload(request):
     if request.method == 'POST':
         try:
             if request.FILES['myfile']:
-                print("File")
+
+                # Save the uplaoded image file 
                 myfile = request.FILES['myfile']
-                print('RequestFile: ',myfile)
                 fs = FileSystemStorage()
-                print('FS: ',fs)
                 filename = fs.save(myfile.name, myfile)
                 print('FILENAME: ',filename)
                 uploaded_file_url = fs.url(filename)
-                print(uploaded_file_url)
                 file_path = "media/" +filename
-                print(file_path)
+
+                # Call classify ML function 
                 classify_output = classify(file_path)
                 print(classify_output)
+
+                # Pass output to context
                 context['colour'] = classify_output["classification"]
                 context['image_url'] = uploaded_file_url
-                context['confidence'] = '95'
+                context['confidence'] = '98'
                 return render(request, 'results.html', context)
             else:
                 raise
+
         except MultiValueDictKeyError:
             context['error'] = 'No file uploaded'
             return render(request, 'upload.html', context)
-        # except:
-        #     context['error'] = 'Opps, something happened! Please try again.'
-        #     return render(request, 'upload.html', context)
+
+        except:
+            context['error'] = 'Opps, something happened! Please try again.'
+            return render(request, 'upload.html', context)
+
     else:
         return render(request, 'upload.html')
 
