@@ -212,8 +212,15 @@ section
   font-weight: bolder;
 } 
 
-
-
+.error
+{
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin-top:20px ;
+  color: #000;
+  font-weight: bolder;
+}
 
 /* RESULTS PAGE */
 
@@ -304,3 +311,5 @@ section
   font-weight: bolder;
    /* background: linear-gradient(-45deg, rgb(238, 119, 82, 0.65), rgb(231, 60, 126, 0.65), rgb(35, 166, 213, 0.65), rgb(35, 213, 171, 0.65)); */
 } 
+
+
