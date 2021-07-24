@@ -4,6 +4,9 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse 
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from django.core.files.base import ContentFile 
+from .forms import UploadImage
 
 #Fast AI imports
 import logging
@@ -19,6 +22,7 @@ from fastai.vision import learner
 
 
 
+
 def home(request):
     return render(request, 'home.html')
 
@@ -26,29 +30,66 @@ def home(request):
 @csrf_exempt
 def upload(request):
     context = {}
-    if request.method == 'POST' and request.FILES['myfile']:
-        print("File")
-        print(request.FILES)
-        myfile = request.FILES['myfile']
-        print('RequestFile: ',myfile)
-        fs = FileSystemStorage()
-        print('FS: ',fs)
-        filename = fs.save(myfile.name, myfile)
-        print('FILENAME: ',filename)
-        uploaded_file_url = fs.url(filename)
-        print(uploaded_file_url)
-        classify_output = classify(filename)
-        print(classify_output)
-        context['colour'] = classify_output["classification"]
-        context['image'] = uploaded_file_url
-        context['confidence'] = '95'
-        return render(request, 'results.html', context)
+    if request.method == 'POST':
+        if request.FILES['myfile']:
+            print("File")
+            print(request.FILES)
+            myfile = request.FILES['myfile']
+            print('RequestFile: ',myfile)
+            fs = FileSystemStorage()
+            print('FS: ',fs)
+            filename = fs.save(myfile.name, myfile)
+            print('FILENAME: ',filename)
+            uploaded_file_url = fs.url(filename)
+            print(uploaded_file_url)
+            # classify_output = classify(filename)
+            # print(classify_output)
+            # context['colour'] = classify_output["classification"]
+            context['image_url'] = uploaded_file_url
+            context['confidence'] = '95'
+            return render(request, 'results.html', context)
 
+        else:
+            context['error'] = 'No file uploaded'
+            return render(request, 'upload.html', context)
     else:
-        context['error'] = 'No file uploaded'
-        return render(request, 'upload.html', context)
-    # return render(request, 'upload.html')
+        return render(request, 'upload.html')
 
+
+# @csrf_exempt
+# def upload(request):
+#     context = {}
+#     myFileName = "none"
+#     if request.method == 'POST':
+#         print("File")
+#         myfile = request.POST
+#         print('RequestFile: ',myfile)
+#         image_form = UploadImage(myfile)
+#         if image_form.is_valid():
+#             print(image_form)
+#             myFileName = myfile
+#         else:
+#             print(image_form.errors)
+
+#         try:
+#             uploaded_file = Image.objects.get(image = myFileName)
+#             context['image'] = uploaded_file
+#             print(uploaded_file)
+#             # classify_output = classify(filename)
+#             # print(classify_output)
+#             # context['colour'] = classify_output["classification"]
+#             context['confidence'] = '95'
+#             myFileName = 'none'
+#             return render(request, 'results.html', context)
+#         except:
+#             context['image'] = myFileName
+
+#         else:
+#             context['error'] = 'No file uploaded'
+#             return render(request, 'upload.html', context)
+#     else:
+#         context['error'] = 'No file uploaded'
+#         return render(request, 'upload.html', context)
 
 
 
