@@ -29,6 +29,7 @@ def home(request):
 @csrf_exempt
 def upload(request):
     context = {}
+    context['error'] = ''
     if request.method == 'POST':
         try:
             if request.FILES['myfile']:
