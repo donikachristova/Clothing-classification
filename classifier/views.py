@@ -5,6 +5,7 @@ from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.datastructures import MultiValueDictKeyError
+from decimal import *
 
 #Fast AI imports
 import logging
@@ -48,7 +49,7 @@ def upload(request):
                 # Pass output to context
                 context['colour'] = classify_output["classification"].replace("_", " ")
                 context['image_url'] = uploaded_file_url
-                context['confidence'] = Decimal(classify_output["loss"] * 100)
+                context['confidence'] = Decimal(classify_output["loss"].eval() * 100)
                 return render(request, 'results.html', context)
             else:
                 raise
@@ -57,9 +58,9 @@ def upload(request):
             context['error'] = 'No file uploaded'
             return render(request, 'upload.html', context)
 
-        except:
-            context['error'] = 'Opps, something happened! Please try again.'
-            return render(request, 'upload.html', context)
+        # except:
+        #     context['error'] = 'Opps, something happened! Please try again.'
+        #     return render(request, 'upload.html', context)
 
     else:
         return render(request, 'upload.html')
@@ -79,7 +80,7 @@ def classify(image):
     output = this_learner.predict(path/image)
     print(output[0])
     print(output[2][output[1]].eval())
-    return {"classification": output[0], "loss":output[2][output[1]].eval()}
+    return {"classification": output[0], "loss":output[2][output[1]]}
 
 
 
