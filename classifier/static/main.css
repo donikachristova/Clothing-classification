@@ -229,8 +229,29 @@ section
 {
   #upload-text {
     font-size: 2rem;
-    left: 18%;
+    left: 20%;
   }
+
+  .upload-div
+  {
+    height: 40%;
+    margin-top: 30%;
+  }
+
+  #upload-btn
+{
+  width: 60%;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  border: 1px solid #000;
+  padding: 1rem 2rem;
+  display: none;
+  margin-top: 80%;
+  margin-left: 25%;
+}
+
+
+
 }
 
 

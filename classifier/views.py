@@ -60,7 +60,7 @@ def upload(request):
             return render(request, 'upload.html', context)
 
         except:
-            context['error'] = 'Opps, something happened! Please try again.'
+            # context['error'] = 'Opps, something happened! Please try again.'
             return render(request, 'upload.html', context)
 
     else:

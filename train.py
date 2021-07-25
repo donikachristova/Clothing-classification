@@ -5,6 +5,9 @@ import pandas as pd
 from fastai.vision.learner import *
 from fastai.vision.models import resnet18
 from fastai.metrics import partial, accuracy_multi
+from fastai.callback import fp16
+from fastai.callback.schedule import fine_tune
+from fastai.learner import export
 
 def get_x(r): return Path('.')/r['filename']
 
@@ -22,10 +25,12 @@ def trainAndExport(filename, modelOutputName):
     learn.fine_tune(20)
     learner_name = "multi_label_model_subset.pkl"
     learn.export(learner_name)
+    return learn
 
 # Turning it into a multilabel data block
 def train():
     #from fastbook import *
-    filename = 'labels_subset_10.csv'
+    filename = 'labels_subset_100.csv'
     modelOutputName = "multi_label_model_subset_10.pkl"
-    trainAndExport(filename, modelOutputName)
+    learn = trainAndExport(filename, modelOutputName)
+    return learn
