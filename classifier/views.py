@@ -18,6 +18,7 @@ import pathlib
 from pathlib import Path
 import os
 from fastai.vision import learner
+import tensorflow as tf
 
 
 
@@ -79,7 +80,7 @@ def classify(image):
     this_learner = learner.load_learner(path/'export.pkl')
     output = this_learner.predict(path/image)
     print(output[0])
-    print(output[2][output[1]].eval())
+    print(output[2][output[1]])
     return {"classification": output[0], "loss":output[2][output[1]]}
 
 
