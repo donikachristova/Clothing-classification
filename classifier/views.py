@@ -92,4 +92,4 @@ def classify(image, modelPath):
 #     this_learner = learner.load_learner(path/'export.pkl')
 #     output = this_learner.predict(path/image)
 #     print(output[0])
-#     return {"classification": output[0]}
+#     return {"classification": output[0], loss}
