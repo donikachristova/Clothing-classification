@@ -48,7 +48,7 @@ def upload(request):
                 # Pass output to context
                 context['colour'] = classify_output["classification"]
                 context['image_url'] = uploaded_file_url
-                context['confidence'] = '98'
+                context['confidence'] = classify_output["loss"]
                 return render(request, 'results.html', context)
             else:
                 raise
@@ -78,7 +78,8 @@ def classify(image):
     this_learner = learner.load_learner(path/'export.pkl')
     output = this_learner.predict(path/image)
     print(output[0])
-    return {"classification": output[0]}
+    print(output[1])
+    return {"classification": output[0], "loss":output[1]}
 
 
 
