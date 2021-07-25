@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse 
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.datastructures import MultiValueDictKeyError
 
 #Fast AI imports
 import logging
@@ -19,6 +20,7 @@ from fastai.vision import learner
 
 
 
+
 def home(request):
     return render(request, 'home.html')
 
@@ -26,49 +28,55 @@ def home(request):
 @csrf_exempt
 def upload(request):
     context = {}
-    if request.method == 'POST' and request.FILES['myfile']:
-        print("File")
-        print(request.FILES)
-        myfile = request.FILES['myfile']
-        print('RequestFile: ',myfile)
-        fs = FileSystemStorage()
-        print('FS: ',fs)
-        filename = fs.save(myfile.name, myfile)
-        print('FILENAME: ',filename)
-        uploaded_file_url = fs.url(filename)
-        print(uploaded_file_url)
-        classify_output = classify(filename)
-        print(classify_output)
-        context['output'] = 'Uploaded'
-        return render(request, 'results.html', context)
+    context['error'] = ''
+    if request.method == 'POST':
+        try:
+            if request.FILES['myfile']:
+
+                # Save the uplaoded image file 
+                myfile = request.FILES['myfile']
+                fs = FileSystemStorage()
+                filename = fs.save(myfile.name, myfile)
+                print('FILENAME: ',filename)
+                uploaded_file_url = fs.url(filename)
+                file_path = "media/" +filename
+
+                # Call classify ML function 
+                classify_output = classify(file_path)
+                print(classify_output)
+
+                # Pass output to context
+                context['colour'] = classify_output["classification"]
+                context['image_url'] = uploaded_file_url
+                context['confidence'] = '98'
+                return render(request, 'results.html', context)
+            else:
+                raise
+
+        except MultiValueDictKeyError:
+            context['error'] = 'No file uploaded'
+            return render(request, 'upload.html', context)
+
+        except:
+            context['error'] = 'Opps, something happened! Please try again.'
+            return render(request, 'upload.html', context)
 
     else:
-        context['error'] = 'No file uploaded'
-        return render(request, 'upload.html', context)
-
+        return render(request, 'upload.html')
 
 
 
 @csrf_exempt
 def result(request):
-
-    print("Hello")
-    # file = request.POST
-    # if file != '':
-    #     classify_output = classify(file)
-    #     context["output"] = classify["classification"]
-    # else:
-    #     context["output"]= "Something went wrong"
-#     return render(request, 'results.html', context)
-#     # HttpResponse(json.dumps(context), content_type ="application/json")
+    return render(request, 'results.html')
 
 
 
 def classify(image):
-    path = Path(pathlib.Path.cwd()).resolve()
+    path = Path(pathlib.Path.cwd())
     print(path)
     this_learner = learner.load_learner(path/'export.pkl')
-    output = this_learner.predict(image)
+    output = this_learner.predict(path/image)
     print(output[0])
     return {"classification": output[0]}
 

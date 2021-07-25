@@ -3,10 +3,15 @@
   {% block title%}AI Clothing Classification{%endblock title%}
 
   {% block content%}
-    <div id="results-page">
-      <h2>Classification:</h2>
+    <div class="results-background">
+      <a href="\file-upload" id="back-button">Back</a>
       <div class="result-div">
-            {{output}}
+        <img id ="uplaoded-image" src="{{image_url}}" alt="Classification image" width="500" height="600">
+        <div class="result-text">
+          <h1 id="color-text">{{colour}}</h3>
+          <h1 id="accuracy-text">{{confidence}}%</h3>
+          <p id="sub-text">confidence</p>
+        </div>
       </div>
     </div>
 {% endblock content%}
