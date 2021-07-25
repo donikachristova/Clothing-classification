@@ -18,7 +18,6 @@ import pathlib
 from pathlib import Path
 import os
 from fastai.vision import learner
-import tensorflow as tf
 
 
 
@@ -50,7 +49,7 @@ def upload(request):
                 # Pass output to context
                 context['colour'] = classify_output["classification"].replace("_", " ")
                 context['image_url'] = uploaded_file_url
-                context['confidence'] = Decimal(classify_output["loss"].eval() * 100)
+                context['confidence'] = Decimal(classify_output["loss"].item() * 100)
                 return render(request, 'results.html', context)
             else:
                 raise
