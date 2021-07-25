@@ -42,15 +42,15 @@ def upload(request):
                 file_path = "media/" +filename
 
                 # Call classify ML function 
-                classify_output = classify(file_path, "multi_label_model_subset.pkl")[0]
+                classify_output = classify(file_path, "multi_label_model_subset.pkl")
                 print(classify_output)
 
                 # Pass output to context
-                category_output = classify_output["category"].split('_')
-                context['colour'] =category_output[0]
-                context['type'] = category_output[1]
+                # category_output = classify_output[0]["category"].split('_')
+                # context['colour'] =category_output[0]
+                # context['type'] = category_output[1]
                 context['image_url'] = uploaded_file_url
-                context['confidence'] = classify_output["loss"]
+                # context['confidence'] = classify_output["loss"]
                 return render(request, 'results.html', context)
             else:
                 raise
@@ -82,7 +82,7 @@ def classify(image, modelPath):
     categories = output[0]
     loss_values = output[2][output[1]]
     category_loss_dict = [{"category": categories[i], "loss": loss_values[i].item()} for i in range(len(categories))]
-    return category_loss_dict
+    return {"categories:" category_loss_dict}
 
 
 
