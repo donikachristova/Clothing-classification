@@ -42,13 +42,15 @@ def upload(request):
                 file_path = "media/" +filename
 
                 # Call classify ML function 
-                classify_output = classify(file_path)
+                classify_output = classify(file_path, "multi_label_model_subset.pkl")[0]
                 print(classify_output)
 
                 # Pass output to context
-                context['colour'] = classify_output["classification"]
+                category_output = classify_output["category"].split('_')
+                context['colour'] =category_output[0]
+                context['type'] = category_output[1]
                 context['image_url'] = uploaded_file_url
-                context['confidence'] = '98'
+                context['confidence'] = classify_output["loss"]
                 return render(request, 'results.html', context)
             else:
                 raise
@@ -72,13 +74,22 @@ def result(request):
 
 
 
-def classify(image):
-    path = Path(pathlib.Path.cwd())
-    print(path)
-    this_learner = learner.load_learner(path/'export.pkl')
+def classify(image, modelPath):
+    path = Path(os.getcwd())
+    this_learner = learner.load_learner(path/modelPath)
     output = this_learner.predict(path/image)
-    print(output[0])
-    return {"classification": output[0]}
+    # return correct output
+    categories = output[0]
+    loss_values = output[2][output[1]]
+    category_loss_dict = [{"category": categories[i], "loss": loss_values[i].item()} for i in range(len(categories))]
+    return category_loss_dict
 
 
 
+# def classify(image):
+#     path = Path(pathlib.Path.cwd())
+#     print(path)
+#     this_learner = learner.load_learner(path/'export.pkl')
+#     output = this_learner.predict(path/image)
+#     print(output[0])
+#     return {"classification": output[0]}
