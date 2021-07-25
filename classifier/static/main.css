@@ -101,6 +101,25 @@ section
     {}
 }
 
+@media (max-width:480px)
+{
+  .button
+  {
+    width: 75%;
+    font-size: 2rem;
+    border: 2px solid #fff;
+    padding: 1rem 3rem;
+  }
+
+  @keyframes buttonChange
+  {
+    50%
+      {
+        border: 2px solid #000000;
+      }
+  }
+}
+
 
 /* UPLOAD PAGE */
 
@@ -183,6 +202,7 @@ section
 
 .dropzone.uploading {
     background: none;
+    overflow:hidden;
 }
 
 #upload-btn
@@ -230,12 +250,15 @@ section
   #upload-text {
     font-size: 2rem;
     left: 20%;
+    right: 20%;
   }
 
   .upload-div
   {
     height: 40%;
-    margin-top: 30%;
+    margin-top: 32%;
+    margin-left: 25%;
+    margin-right: 10%;
   }
 
   #upload-btn
@@ -246,8 +269,8 @@ section
     border: 1px solid #000;
     padding: 1rem 2rem;
     display: none;
-    margin-top: 80%;
-    margin-left: 25%;
+    margin-top: 140%;
+    margin-left: 20%;
   }
 
 }
@@ -341,7 +364,61 @@ section
   color: #000;
   background-color: #fff;
   font-weight: bolder;
-   /* background: linear-gradient(-45deg, rgb(238, 119, 82, 0.65), rgb(231, 60, 126, 0.65), rgb(35, 166, 213, 0.65), rgb(35, 213, 171, 0.65)); */
 } 
 
 
+@media (max-width:480px)
+{
+  .result-div
+  {
+    width: 80%;
+    height: 80%;
+    margin-top: 20%;
+    margin-left: 10%;
+    display: inline-block;
+  } 
+
+  #uplaoded-image
+{
+  width: 170px;
+  height: 230px;
+  margin:0 0;
+  margin-top:20px;
+  margin-left: 20%;
+  margin-bottom: 20px;
+}
+
+.result-text
+{
+  position: fixed;
+  height: 240px;
+  width: 270px;
+  margin: 0px 10px 10px 10px;
+}
+
+#color-text
+{
+  font-size: 3rem;
+  font-weight: bolder;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#accuracy-text{ 
+  font-size: 2rem;
+  font-weight: bolder;
+  margin-top: 15%;
+  margin-bottom: 5%;
+}
+
+#sub-text
+{
+  font-size: 2rem;
+}
+
+#back-button
+{
+  width: 30%;
+}
+
+}

@@ -16,7 +16,7 @@ import io
 import json
 import pathlib
 from pathlib import Path
-import os
+import os, shutil
 from fastai.vision import learner
 
 
@@ -32,6 +32,14 @@ def upload(request):
     if request.method == 'POST':
         try:
             if request.FILES['myfile']:
+
+                # Clean Image Directory
+                path = os.path.join(Path(pathlib.Path.cwd()),'media')
+                for root, dirs, files in os.walk(path):
+                    for f in files:
+                        os.unlink(os.path.join(root, f))
+                    for d in dirs:
+                        shutil.rmtree(os.path.join(root, d))
 
                 # Save the uplaoded image file 
                 myfile = request.FILES['myfile']
