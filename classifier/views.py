@@ -19,7 +19,6 @@ from pathlib import Path
 import os
 from fastai.vision import learner
 
-ONE_DP = decimal.Decimal("0.1")
 
 
 def home(request):
@@ -48,7 +47,7 @@ def upload(request):
 
                 # Pass output to context
                 context['colour'] = classify_output["classification"].replace("_", " ")
-                context['confidence'] = Decimal(classify_output["loss"].item() * 100).quantize(ONE_DP)
+                context['confidence'] = round(Decimal(classify_output["loss"].item() * 100), 1)
                 context['image_url'] = uploaded_file_url
 
                 return render(request, 'results.html', context)
