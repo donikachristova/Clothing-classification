@@ -5,6 +5,7 @@ from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.datastructures import MultiValueDictKeyError
+from decimal import *
 
 #Fast AI imports
 import logging
@@ -15,9 +16,8 @@ import io
 import json
 import pathlib
 from pathlib import Path
-import os
+import os, shutil
 from fastai.vision import learner
-
 
 
 
@@ -33,6 +33,14 @@ def upload(request):
         try:
             if request.FILES['myfile']:
 
+                # Clean Image Directory
+                path = os.path.join(Path(pathlib.Path.cwd()),'media')
+                for root, dirs, files in os.walk(path):
+                    for f in files:
+                        os.unlink(os.path.join(root, f))
+                    for d in dirs:
+                        shutil.rmtree(os.path.join(root, d))
+
                 # Save the uplaoded image file 
                 myfile = request.FILES['myfile']
                 fs = FileSystemStorage()
@@ -46,9 +54,10 @@ def upload(request):
                 print(classify_output)
 
                 # Pass output to context
-                context['colour'] = classify_output["classification"]
+                context['colour'] = classify_output["classification"].replace("_", " ")
+                context['confidence'] = round(Decimal(classify_output["loss"].item() * 100), 1)
                 context['image_url'] = uploaded_file_url
-                context['confidence'] = '98'
+
                 return render(request, 'results.html', context)
             else:
                 raise
@@ -78,7 +87,8 @@ def classify(image):
     this_learner = learner.load_learner(path/'export.pkl')
     output = this_learner.predict(path/image)
     print(output[0])
-    return {"classification": output[0]}
+    print(output[2][output[1]])
+    return {"classification": output[0], "loss":output[2][output[1]]}
 
 
 
