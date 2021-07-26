@@ -306,7 +306,7 @@ section
   position: relative;
   height: 370px;
   width: 658px;
-  margin: 50px 40px 30px 40px;
+  margin: 40px 40px 30px 40px;
 }
 
 #color-text
@@ -326,7 +326,7 @@ section
   text-transform: uppercase;
   font-weight: bolder;
   letter-spacing: 2px;
-  margin-top: 20%;
+  margin-top: 10%;
   margin-bottom: 5%;
 }
 
@@ -380,25 +380,34 @@ section
 
   #uplaoded-image
 {
-  width: 170px;
-  height: 230px;
+  /* width: 170px; */
+  /* height: 230px; */
+  width: 65%;
+  height: 50%;
   margin:0 0;
   margin-top:20px;
-  margin-left: 20%;
-  margin-bottom: 20px;
+  margin-left: 17.5%;
+  margin-right: 17.5%;
+  margin-bottom: 10px;
 }
 
 .result-text
 {
-  position: fixed;
-  height: 240px;
-  width: 270px;
-  margin: 0px 10px 10px 10px;
+  /* height: 240px;
+  width: 270px; */
+  /* margin: 0px 10px 10px 10px; */
+  width: 90%;
+  height: 30%;
+  margin: 0px 0px 0px 0px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top:20px;
+
 }
 
 #color-text
 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bolder;
   margin-top: 5%;
   margin-bottom: 5%;
@@ -407,7 +416,7 @@ section
 #accuracy-text{ 
   font-size: 2rem;
   font-weight: bolder;
-  margin-top: 15%;
+  margin-top: 10%;
   margin-bottom: 5%;
 }
 

@@ -13,7 +13,7 @@ function resultsFunc()
         if (file.type === 'image/png' ||
             file.type === 'image/jpeg'||
             file.type ==='image/jpg') {
-            if (file.size < (3000 * 1024)) {
+            if (file.size < (3000 * 2400)) {
                 upload.parentNode.className = 'area uploading';
                 upload_btn.style.display = "block";
                 if (error.innerHTML != "")
@@ -21,7 +21,7 @@ function resultsFunc()
                     error.innerHTML = "";
                 }
             } else {
-                window.alert('File size is too large, please ensure you are uploading a file of less than 3MB');
+                window.alert('File size is too large, please ensure you are uploading a file of less than 10MB');
             }
         } else {
             window.alert('File type ' + file.type + ' not supported');
@@ -29,9 +29,7 @@ function resultsFunc()
     }
 
 
-    upload.addEventListener('change', function (e) {
-        onFile();
-    }, false);
+    upload.addEventListener('change', function (e) { onFile(); }, false);
 
 }
 
