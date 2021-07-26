@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-b($$sx0&1yu$5rn6r4*s+8aui4yhz04xku*-8q6k+fk*$n7v9y
 DEBUG = True
 
 ALLOWED_HOSTS = ['herokudjangoapp.herokuapp.com',
+                 'ai-clothing-classifier.herokuapp.com',
                  'nameless-cliffs-43223.herokuapp.com',
                  '127.0.0.1']
 
