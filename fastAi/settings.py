@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['herokudjangoapp.herokuapp.com',
                  'ai-clothing-classifier.herokuapp.com',
-                 'nameless-cliffs-43223.herokuapp.com',
+                 'single-category-app.herokuapp.com',
                  '127.0.0.1']
 
 
