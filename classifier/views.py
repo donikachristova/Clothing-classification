@@ -84,7 +84,7 @@ def result(request):
 def classify(image):
     path = Path(pathlib.Path.cwd())
     print(path)
-    this_learner = learner.load_learner(path/'export.pkl')
+    this_learner = learner.load_learner(path/'single_label_model_subset.pkl')
     output = this_learner.predict(path/image)
     print(output[0])
     print(output[2][output[1]])
