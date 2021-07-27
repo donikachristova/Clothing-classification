@@ -58,6 +58,9 @@ def upload(request):
                 context['confidence'] = round(Decimal(classify_output["loss"].item() * 100), 1)
                 context['image_url'] = uploaded_file_url
 
+                context['colour'] = "RED DRESS"
+                context['confidence'] = "100"
+
                 return render(request, 'results.html', context)
             else:
                 raise

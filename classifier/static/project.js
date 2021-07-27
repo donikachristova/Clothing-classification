@@ -21,7 +21,7 @@ function resultsFunc()
                     error.innerHTML = "";
                 }
             } else {
-                window.alert('File size is too large, please ensure you are uploading a file of less than 10MB');
+                window.alert('File size is too large, please ensure you are uploading a file of less than 7MB');
             }
         } else {
             window.alert('File type ' + file.type + ' not supported');
